@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USL Admin - Ultimate Speed Limited</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-page">
+        <div class="login-card">
+            <div class="login-logo">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="22" stroke="url(#logoGrad)" stroke-width="2"/>
+                    <path d="M16 24L22 30L32 18" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0" y1="0" x2="48" y2="48">
+                            <stop stop-color="#00A8E0"/>
+                            <stop offset="1" stop-color="#00D4AA"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h1 class="login-title">USL Admin</h1>
+            <p class="login-subtitle">Ultimate Speed Limited</p>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email" class="form-label">電郵</label>
+                    <input type="email" id="email" class="form-input" placeholder="admin@usl.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">密碼</label>
+                    <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                </div>
+                <div class="login-error" id="loginError"></div>
+                <button type="submit" class="btn-primary login-btn" id="loginBtn">
+                    <span class="btn-text">登入</span>
+                    <span class="btn-loading">登入中...</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="dashboard hidden">
+        <header class="dashboard-header">
+            <div class="header-left">
+                <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="22" stroke="url(#logoGrad2)" stroke-width="2"/>
+                    <path d="M16 24L22 30L32 18" stroke="url(#logoGrad2)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="logoGrad2" x1="0" y1="0" x2="48" y2="48">
+                            <stop stop-color="#00A8E0"/>
+                            <stop offset="1" stop-color="#00D4AA"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <h1 class="dashboard-title">USL Admin</h1>
+            </div>
+            <div class="header-right">
+                <button class="btn-secondary" id="logoutBtn">登出</button>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <!-- Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18 10l-3-5H9L6 10l-2.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"/>
+                            <circle cx="7" cy="17" r="2"/>
+                            <circle cx="17" cy="17" r="2"/>
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="totalVehicles">0</div>
+                        <div class="stat-label">全部車輛</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon available">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="availableVehicles">0</div>
+                        <div class="stat-label">可預約</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon new">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="newVehicles">0</div>
+                        <div class="stat-label">全新車</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Vehicle Section -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">新增車輛</h2>
+                    <button class="btn-secondary" id="toggleAddForm">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        展開
+                    </button>
+                </div>
+                <form id="addVehicleForm" class="vehicle-form hidden">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="make" class="form-label">Make *</label>
+                            <input type="text" id="make" class="form-input" placeholder="Toyota" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="model" class="form-label">Model *</label>
+                            <input type="text" id="model" class="form-input" placeholder="bZ4X" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="year" class="form-label">Year *</label>
+                            <input type="number" id="year" class="form-input" placeholder="2023" min="2000" max="2030" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="price" class="form-label">Price *</label>
+                            <input type="text" id="price" class="form-input" placeholder="HK$289,000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="color" class="form-label">Color *</label>
+                            <input type="text" id="color" class="form-input" placeholder="e.g. Midnight Black" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="type" class="form-label">Type *</label>
+                            <select id="type" class="form-input" required>
+                                <option value="">Select Type</option>
+                                <option value="suv">SUV</option>
+                                <option value="sedan">Sedan</option>
+                                <option value="sports">Sports</option>
+                                <option value="mpv">MPV</option>
+                                <option value="lightgoods">Light Goods Vehicle</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="powertrain" class="form-label">Powertrain *</label>
+                            <select id="powertrain" class="form-input" required>
+                                <option value="">Select Powertrain</option>
+                                <option value="ev">EV</option>
+                                <option value="phev">Plug-in Hybrid</option>
+                                <option value="hybrid">Pure Hybrid</option>
+                                <option value="gas">Gas</option>
+                                <option value="diesel">Diesel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="status" class="form-label">Status *</label>
+                            <select id="status" class="form-input" required>
+                                <option value="new">New</option>
+                                <option value="available">Available</option>
+                                <option value="reserved">Reserved / On Hold</option>
+                                <option value="sold">Sold</option>
+                            </select>
+                            <small class="form-hint">Reserved：客人已付留位費，暫勿展示</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="specs" class="form-label">Specs (comma-separated)</label>
+                        <input type="text" id="specs" class="form-input" placeholder="續航510km, 四驅, 全景天窗">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea id="description" class="form-input" rows="3" placeholder="車輛詳細描述..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Images *</label>
+                        <div class="image-upload-area" id="imageUploadArea">
+                            <input type="file" id="imageFiles" multiple accept="image/*" class="file-input">
+                            <div class="upload-placeholder">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="17 8 12 3 7 8"/>
+                                    <line x1="12" y1="3" x2="12" y2="15"/>
+                                </svg>
+                                <p>點擊或拖曳上傳圖片</p>
+                                <span>支援 JPG, PNG (最多 10 張)</span>
+                            </div>
+                            <div class="image-preview-grid" id="imagePreviewGrid"></div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary" id="submitVehicle">
+                            <span class="btn-text">新增車輛</span>
+                            <span class="btn-loading">上傳中...</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Vehicle List -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">車輛列表</h2>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">全部</button>
+                        <button class="filter-tab" data-filter="available">可預約</button>
+                        <button class="filter-tab" data-filter="new">全新</button>
+                        <button class="filter-tab" data-filter="sold">已售</button>
+                    </div>
+                </div>
+                <div class="vehicle-list" id="vehicleList">
+                    <div class="loading-spinner">載入中...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-container">
+            <button class="modal-close" id="editModalClose">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <div class="modal-content edit-modal-content">
+                <h2 class="modal-title">編輯車輛</h2>
+                <form id="editVehicleForm">
+                    <input type="hidden" id="editVehicleId">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editMake" class="form-label">Make *</label>
+                            <input type="text" id="editMake" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editModel" class="form-label">Model *</label>
+                            <input type="text" id="editModel" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editYear" class="form-label">Year *</label>
+                            <input type="number" id="editYear" class="form-input" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editPrice" class="form-label">Price *</label>
+                            <input type="text" id="editPrice" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editColor" class="form-label">Color *</label>
+                            <input type="text" id="editColor" class="form-input" placeholder="e.g. Midnight Black" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editType" class="form-label">Type *</label>
+                            <select id="editType" class="form-input" required>
+                                <option value="suv">SUV</option>
+                                <option value="sedan">Sedan</option>
+                                <option value="sports">Sports</option>
+                                <option value="mpv">MPV</option>
+                                <option value="lightgoods">Light Goods Vehicle</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPowertrain" class="form-label">Powertrain *</label>
+                            <select id="editPowertrain" class="form-input" required>
+                                <option value="ev">EV</option>
+                                <option value="phev">Plug-in Hybrid</option>
+                                <option value="hybrid">Pure Hybrid</option>
+                                <option value="gas">Gas</option>
+                                <option value="diesel">Diesel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStatus" class="form-label">Status *</label>
+                            <select id="editStatus" class="form-input" required>
+                                <option value="new">New</option>
+                                <option value="available">Available</option>
+                                <option value="reserved">Reserved / On Hold</option>
+                                <option value="sold">Sold</option>
+                            </select>
+                            <small class="form-hint">Reserved：客人已付留位費，暫勿展示</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editSpecs" class="form-label">Specs (comma-separated)</label>
+                        <input type="text" id="editSpecs" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescription" class="form-label">Description</label>
+                        <textarea id="editDescription" class="form-input" rows="3"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="cancelEdit">取消</button>
+                        <button type="submit" class="btn-primary">儲存更改</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

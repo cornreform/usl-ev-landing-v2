@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Ultimate Speed Limited | 高端電動車進口</title>
+    <meta name="description" content="Ultimate Speed Limited 專營高端電動車進口業務，為香港消費者引進最優質的電動車，涵蓋英國、澳洲、南非、日本及更多地區。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.min.css">
+    <!-- Mobile stylesheet: only active when .mobile class is present on <html> -->
+    <link rel="stylesheet" href="mobile-styles.min.css">
+    <script>
+        (function() {
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+                || (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && window.innerWidth < 769);
+            if (isMobile) {
+                document.documentElement.classList.add('mobile');
+            }
+        })();
+    </script>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-text">USL</span>
+                <span class="logo-line"></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#vehicles" class="nav-link">車款</a></li>
+                <li><a href="#services" class="nav-link">專業服務</a></li>
+                <li><a href="#regulatory" class="nav-link">法規參考</a></li>
+                <li><a href="#about" class="nav-link">關於</a></li>
+                <li><a href="#contact" class="nav-link">聯絡</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">立即查詢</a>
+            <button class="nav-toggle" id="navToggle" aria-label="開啟選單">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="關閉選單">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+        <ul class="mobile-menu-links">
+            <li><a href="#vehicles" class="mobile-menu-link">車款</a></li>
+            <li><a href="#services" class="mobile-menu-link">專業服務</a></li>
+            <li><a href="#regulatory" class="mobile-menu-link">法規參考</a></li>
+            <li><a href="#about" class="mobile-menu-link">關於</a></li>
+            <li><a href="#contact" class="mobile-menu-link">聯絡</a></li>
+            <li><a href="#contact" class="mobile-menu-cta">立即查詢</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <!-- CSS Animated Background -->
+        <div class="hero-bg">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="hero-orb hero-orb-3"></div>
+            <div class="hero-orb hero-orb-4"></div>
+            <div class="hero-grid"></div>
+            <div class="hero-lines">
+                <div class="hero-line"></div>
+                <div class="hero-line"></div>
+                <div class="hero-line"></div>
+                <div class="hero-line"></div>
+                <div class="hero-line"></div>
+            </div>
+            <div class="hero-particles">
+                <div class="particle particle-1"></div>
+                <div class="particle particle-2"></div>
+                <div class="particle particle-3"></div>
+                <div class="particle particle-4"></div>
+                <div class="particle particle-5"></div>
+                <div class="particle particle-6"></div>
+                <div class="particle particle-7"></div>
+                <div class="particle particle-8"></div>
+                <div class="particle particle-9"></div>
+                <div class="particle particle-10"></div>
+            </div>
+        </div>
+        <div class="hero-vignette"></div>
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-up">超越平凡</h1>
+            <p class="hero-subtitle animate-fade-up">專業搜羅全球頂級電動車，英國、澳洲、南非、日本等國家直送香港</p>
+            <a href="#contact" class="hero-cta animate-fade-up">
+                <span>立即查詢</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+        <div class="hero-scroll">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Vehicles Section -->
+    <section class="section vehicles" id="vehicles">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">精選車款</h2>
+                <p class="section-subtitle animate-on-scroll">超越平凡，品質保證</p>
+            </div>
+            <div class="vehicle-search-wrapper animate-on-scroll">
+                <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" id="vehicleSearchInput" class="vehicle-search-input" placeholder="搜尋品牌、型號、年份... 例如：Toyota、SUV、2023">
+                <button class="search-clear-btn" id="searchClearBtn" style="display:none;">✕</button>
+            </div>
+            <div class="vehicle-filters animate-on-scroll">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="suv">SUV</button>
+                <button class="filter-btn" data-filter="sedan">轎車</button>
+                <button class="filter-btn" data-filter="sports">跑車</button>
+                <button class="filter-btn" data-filter="mpv">MPV</button>
+                <button class="filter-btn" data-filter="lightgoods">輕型貨車</button>
+            </div>
+            <div class="vehicle-grid" id="vehicleGrid">
+                <!-- Vehicle cards will be injected by JS -->
+            </div>
+            <div class="vehicle-toggle-wrapper" id="vehicleToggleWrapper" style="display:none;">
+                <a href="vehicles.html" class="vehicle-toggle-btn" id="vehicleToggleBtn">
+                    <span class="toggle-text">按此查看所有精選車型</span>
+                    <svg class="toggle-icon" id="toggleIcon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M5 8l5 5 5-5"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="services-bg-glow"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">專業服務</h2>
+                <p class="section-subtitle animate-on-scroll">一站式進口解決方案</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M28 6L6 17v18c0 12 9.5 17 22 25 12.5-8 22-13 22-25V17L28 6z"/>
+                            <path d="M19 28l7 7 12-14"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">專業評估</h3>
+                    <p class="service-description">深入分析進口可行性、法規合規性及成本效益。我們的團隊具备10年+跨市場進出口經驗，涵蓋英國、澳洲、南非、日本等全球市場，提供專業建議。</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="28" cy="28" r="22"/>
+                            <path d="M16 28h24M28 16v24"/>
+                            <path d="M16 16l24 24M40 16L16 40"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">類型評定顧問</h3>
+                    <p class="service-description">專業代辦運輸署類型評定申請。熟悉各國標準（英/日/UNECE）轉換香港標準流程，大幅縮短審批時間。</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="8" y="8" width="40" height="40" rx="6"/>
+                            <path d="M20 28h16M28 20v16"/>
+                            <path d="M8 38h10M38 8v10"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">代理申請</h3>
+                    <p class="service-description">一站式代辦進口許可證及環保署審批。從文件準備到遞交，全程代辦，讓您專注核心業務。</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M44 28c0 9.9-8.1 18-18 18S8 37.9 8 28s8.1-18 18-18"/>
+                            <path d="M28 8c-3 0-6 2-6 5s2.5 5.5 6 6.5 6 2.5 6 6.5-3 5-6 5"/>
+                            <circle cx="28" cy="28" r="5"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">電力安全報告</h3>
+                    <p class="service-description">香港少數具备 in-house 電力安全檢測能力。每份報告由合資格工程師簽發，符合機電工程署標準，包括高壓系統絕緣電阻測試。</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M8 42h40M14 42V24l14-10 14 10v18"/>
+                            <path d="M24 42v-10h8v10"/>
+                            <circle cx="28" cy="24" r="4"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">一站式交付</h3>
+                    <p class="service-description">英國、澳洲、南非、日本等國家採購到香港驗車，全程無憂。交付即能合法上路，讓您安心駕駛。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section stats" id="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number" data-target="10">0</span>
+                    <span class="stat-plus">+</span>
+                    <span class="stat-label">年跨市場經驗</span>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number" data-target="5">0</span>
+                    <span class="stat-plus">+</span>
+                    <span class="stat-label">市場覆蓋</span>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number" data-target="330">0</span>
+                    <span class="stat-plus">+</span>
+                    <span class="stat-label">電力安全報告</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content animate-on-scroll">
+                    <h2 class="section-title">關於我們</h2>
+                    <p class="about-text">Ultimate Speed Limited 擁有超過10年跨市場進出口汽車經驗，業務覆蓋英國、澳洲、南非、日本等多個全球市場。我們相信潔淨能源代表未來，專注為香港客戶搜羅各地高端電動車，由專業團隊代辦一切進口程序。</p>
+                    <p class="about-text">每一台車都經過嚴格電力安全檢測，確保客戶安心駕駛。我們熟悉香港交通條例及進口法規，提供從評估、類型評定、代理申請到交付的一站式服務，讓您輕鬆擁有心儀電動車。</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                <path d="M22 4L12 14.01l-3-3"/>
+                            </svg>
+                            <span>10年+ 跨市場經驗</span>
+                        </div>
+                        <div class="about-feature">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                <path d="M22 4L12 14.01l-3-3"/>
+                            </svg>
+                            <span>In-house 電力安全檢測</span>
+                        </div>
+                        <div class="about-feature">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                <path d="M22 4L12 14.01l-3-3"/>
+                            </svg>
+                            <span>專業團隊</span>
+                        </div>
+                        <div class="about-feature">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                <path d="M22 4L12 14.01l-3-3"/>
+                            </svg>
+                            <span>四地直送</span>
+                        </div>
+                        <div class="about-feature">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                <path d="M22 4L12 14.01l-3-3"/>
+                            </svg>
+                            <span>品質保證</span>
+                        </div>
+                        <div class="about-feature">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                <path d="M22 4L12 14.01l-3-3"/>
+                            </svg>
+                            <span>透明流程</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual animate-on-scroll">
+                    <div class="about-shape about-shape-1"></div>
+                    <div class="about-shape about-shape-2"></div>
+                    <div class="about-shape about-shape-3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section process" id="process">
+        <div class="services-bg-glow"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">服務流程</h2>
+                <p class="section-subtitle animate-on-scroll">四個步驟，輕鬆擁有心儀電動車</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll" data-step="01">
+                    <div class="service-step-num">01</div>
+                    <div class="service-icon">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M28 8v12M16 20h24"/>
+                            <circle cx="28" cy="28" r="20"/>
+                            <path d="M28 40v8"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">聯絡查詢</h3>
+                    <p class="service-description">聯絡我們，講解您的需求及心儀車款。我們提供英國、澳洲、南非、日本等全球代購服務。</p>
+                    <div class="service-arrow"></div>
+                </div>
+                <div class="service-card animate-on-scroll" data-step="02">
+                    <div class="service-step-num">02</div>
+                    <div class="service-icon">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="28" cy="28" r="22"/>
+                            <path d="M28 12v8l-6 6"/>
+                            <circle cx="28" cy="28" r="4"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">專業評估</h3>
+                    <p class="service-description">專業團隊分析進口可行性、法規合規性及成本效益，提供詳細費用報告。</p>
+                    <div class="service-arrow"></div>
+                </div>
+                <div class="service-card animate-on-scroll" data-step="03">
+                    <div class="service-step-num">03</div>
+                    <div class="service-icon">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="8" y="8" width="40" height="40" rx="6"/>
+                            <path d="M20 28h16M28 20v16"/>
+                            <path d="M8 38h10M38 8v10"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">代理申請</h3>
+                    <p class="service-description">代辦所有進口程序、運輸及文件審批，全程無需您操心任何細節。</p>
+                    <div class="service-arrow"></div>
+                </div>
+                <div class="service-card animate-on-scroll" data-step="04">
+                    <div class="service-step-num">04</div>
+                    <div class="service-icon">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M8 42h40M14 42V24l14-10 14 10v18"/>
+                            <path d="M24 42v-10h8v10"/>
+                            <circle cx="28" cy="24" r="4"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">一站式交付</h3>
+                    <p class="service-description">汽車驗收，合法上路。交付即能安心駕駛，享受潔淨能源出行體驗。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regulatory Section -->
+    <section class="section regulatory" id="regulatory">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">法規參考</h2>
+                <p class="section-subtitle animate-on-scroll">符合香港政府部門標準</p>
+            </div>
+            <div class="regulatory-grid">
+                <div class="regulatory-card animate-on-scroll">
+                    <div class="regulatory-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="20" cy="20" r="16"/>
+                            <path d="M20 12v8l5 5"/>
+                        </svg>
+                    </div>
+                    <h3 class="regulatory-title">運輸署</h3>
+                    <p class="regulatory-description">車輛類型評定及首次登記申請。我們熟悉國際標準（UNECE）與香港標準的對接轉換流程。</p>
+                    <a href="https://www.td.gov.hk/" target="_blank" rel="noopener" class="regulatory-link">了解更多</a>
+                </div>
+                <div class="regulatory-card animate-on-scroll">
+                    <div class="regulatory-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20 4L6 12v12c0 8 6 12 14 18 8-6 14-10 14-18V12L20 4z"/>
+                            <path d="M14 20l4 4 8-8"/>
+                        </svg>
+                    </div>
+                    <h3 class="regulatory-title">機電工程署</h3>
+                    <p class="regulatory-description">電動車電力安全標準。我們的 in-house 電力安全報告符合機電工程署要求，涵蓋高壓系統及絕緣電阻檢測。</p>
+                    <a href="https://www.emsd.gov.hk/" target="_blank" rel="noopener" class="regulatory-link">了解更多</a>
+                </div>
+                <div class="regulatory-card animate-on-scroll">
+                    <div class="regulatory-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M32 8H8a2 2 0 00-2 2v20a2 2 0 002 2h24a2 2 0 002-2V10a2 2 0 00-2-2z"/>
+                            <path d="M14 20h12M14 26h8"/>
+                        </svg>
+                    </div>
+                    <h3 class="regulatory-title">環境保護署</h3>
+                    <p class="regulatory-description">進口電動車排放及環保標準審批。我們代辦所有環保署相關申請，確保車輛符合香港環保要求。</p>
+                    <a href="https://www.epd.gov.hk/" target="_blank" rel="noopener" class="regulatory-link">了解更多</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info animate-on-scroll">
+                    <h2 class="section-title">立即查詢</h2>
+                    <p class="contact-subtitle">無論是個人購車或商業合作，我們將在24小時內提供專業回覆</p>
+                    <div class="contact-features">
+                        <div class="contact-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                            <span>電話咨詢</span>
+                        </div>
+                        <div class="contact-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M4 4h12c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2v-8c0-1.1.9-2 2-2z"/>
+                                <path d="M2 6l8 6 8-6"/>
+                            </svg>
+                            <span>電郵回覆</span>
+                        </div>
+                        <div class="contact-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                <path d="M22 4L12 14.01l-3-3"/>
+                            </svg>
+                            <span>專業跟進</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form animate-on-scroll" id="contactForm">
+                    <div class="form-group">
+                        <label for="queryType" class="form-label">查詢類型 <span class="required">*</span></label>
+                        <select id="queryType" name="queryType" class="form-input" required>
+                            <option value="">請選擇...</option>
+                            <option value="vehicle">車輛查詢</option>
+                            <option value="power-report">電力安全報告</option>
+                            <option value="type-approval">類型評定代辦</option>
+                            <option value="import-permit">代理申請</option>
+                            <option value="business">商業合作</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="form-label">姓名 <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                        <span class="form-error" id="nameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="company" class="form-label">公司名稱</label>
+                        <input type="text" id="company" name="company" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="form-label">電話 <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" class="form-input" required>
+                        <span class="form-error" id="phoneError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">電郵</label>
+                        <input type="email" id="email" name="email" class="form-input">
+                        <span class="form-error" id="emailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicle" class="form-label">車款興趣</label>
+                        <select id="vehicle" name="vehicle" class="form-input">
+                            <option value="">請選擇...</option>
+                            <option value="suv">SUV 車款</option>
+                            <option value="sedan">轎車</option>
+                            <option value="sports">跑車</option>
+                            <option value="mpv">MPV</option>
+                            <option value="lightgoods">輕型貨車</option>
+                            <option value="other">其他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">訊息</label>
+                        <textarea id="message" name="message" class="form-input form-textarea" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="form-submit" id="submitBtn">
+                        <span class="submit-text">提交查詢</span>
+                        <span class="submit-loading">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="10" cy="10" r="8" stroke-dasharray="50" stroke-dashoffset="10"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <p class="form-privacy">我們重視您的私隱，不會向第三方透露您的資料。</p>
+                    <div class="form-success" id="formSuccess">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <path d="M22 4L12 14.01l-3-3"/>
+                        </svg>
+                        <span>提交成功！我們將盡快與您聯絡。</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">USL</span>
+                    <span class="logo-line"></span>
+                </div>
+                <p class="footer-company">Ultimate Speed Limited</p>
+                <p class="footer-copyright">版權所有 2026 Ultimate Speed Limited. 版權所有。</p>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-link" aria-label="Facebook">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="2" width="20" height="20" rx="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="18" cy="6" r="1"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-link" aria-label="LinkedIn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <!-- Vehicle Detail Modal -->
+    <div class="modal-overlay" id="vehicleModal">
+        <div class="modal-container">
+            <button class="modal-close" id="vehicleModalClose">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <div class="modal-content vehicle-detail-modal">
+                <div class="vehicle-gallery">
+                    <div class="gallery-main">
+                        <img src="" alt="" id="galleryMainImage">
+                        <button class="gallery-nav gallery-prev" id="galleryPrev">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                        </button>
+                        <button class="gallery-nav gallery-next" id="galleryNext">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="gallery-thumbnails" id="galleryThumbnails"></div>
+                </div>
+                <div class="vehicle-detail-content">
+                    <div class="vehicle-detail-header">
+                        <span class="vehicle-detail-badge" id="vehicleBadge"></span>
+                        <h2 class="vehicle-detail-title" id="vehicleTitle"></h2>
+                        <div class="vehicle-detail-price" id="vehiclePrice"></div>
+                    </div>
+                    <div class="vehicle-detail-specs" id="vehicleSpecs"></div>
+                    <p class="vehicle-detail-description" id="vehicleDescription"></p>
+                    <button class="btn-primary booking-cta" id="openBookingModal">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2"/>
+                            <path d="M16 2v4M8 2v4M3 10h18"/>
+                        </svg>
+                        預約睇車
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-container">
+            <button class="modal-close" id="bookingModalClose">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <div class="modal-content booking-modal-content">
+                <div class="booking-left">
+                    <h2 class="booking-title">預約睇車</h2>
+                    <p class="booking-subtitle" id="bookingVehicleName"></p>
+                    <div class="booking-form">
+                        <div class="booking-section">
+                            <h3 class="booking-section-title">選擇日期</h3>
+                            <div class="date-grid" id="dateGrid"></div>
+                        </div>
+                        <div class="booking-section">
+                            <h3 class="booking-section-title">選擇時間</h3>
+                            <div class="time-slots" id="timeSlots"></div>
+                        </div>
+                        <div class="booking-section">
+                            <h3 class="booking-section-title">您的資料</h3>
+                            <div class="form-group">
+                                <label for="clientName" class="form-label">姓名 <span class="required">*</span></label>
+                                <input type="text" id="clientName" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="clientPhone" class="form-label">電話 <span class="required">*</span></label>
+                                <input type="tel" id="clientPhone" class="form-input" required>
+                            </div>
+                        </div>
+                        <button class="btn-primary booking-submit" id="confirmBooking" disabled>
+                            與專人聯絡
+                        </button>
+                    </div>
+                </div>
+                <div class="booking-right">
+                    <div class="booking-vehicle-card">
+                        <img id="bookingVehicleImage" src="" alt="Vehicle">
+                        <div class="booking-vehicle-info">
+                            <div class="booking-vehicle-name" id="bookingVehicleCardName"></div>
+                            <div class="booking-vehicle-price" id="bookingVehiclePrice"></div>
+                            <div class="booking-vehicle-specs" id="bookingVehicleSpecs"></div>
+                            <div class="booking-vehicle-desc" id="bookingVehicleDesc"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
