@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/sunnycsl/ultimate-speed/issues"
   },
-  "homepage": "https://github.com/sunnycsl/ultimate-speed#readme"
+  "homepage": "https://github.com/sunnycsl/ultimate-speed#readme",
+  "devDependencies": {
+    "cssnano": "^7.1.5"
+  }
 }
