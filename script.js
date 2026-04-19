@@ -402,7 +402,7 @@ function initStatsCounter() {
                 }
             });
         },
-        { threshold: 0.5 }
+        { threshold: 0.1, rootMargin: '0px 0px -10px 0px' }
     );
 
     stats.forEach(stat => observer.observe(stat));
@@ -1155,4 +1155,18 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initScrollAnimations();
     initModals();
-    initVehicleGrid(); // Now loads from Firestore\n    initStatsCounter();\n    initContactForm();\n\n    // PWA Service Worker Registration\n    if ('serviceWorker' in navigator) {\n      navigator.serviceWorker.register('/sw.js')\n        .then((registration) => {\n          console.log('Service Worker registered with scope:', registration.scope);\n        })\n        .catch((error) => {\n          console.log('Service Worker registration failed:', error);\n        });\n    }\n});
+    initVehicleGrid();
+    initStatsCounter();
+    initContactForm();
+
+    // PWA Service Worker Registration
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+                console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch((error) => {
+                console.log('Service Worker registration failed:', error);
+            });
+    }
+});

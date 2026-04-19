@@ -1,6 +1,7 @@
 /**
- * Firebase Configuration - USL Website
+ * Firebase Configuration - USL Website V2
  * Ultimate Speed Limited
+ * Project: uslweb-c2d9c
  */
 
 // Firebase configuration
@@ -11,7 +12,8 @@ const firebaseConfig = {
   projectId: "uslweb-c2d9c",
   storageBucket: "uslweb-c2d9c.firebasestorage.app",
   messagingSenderId: "450947693009",
-  appId: "1:450947693009:web:ab539d7233e04f8c0b48f0"
+  appId: "1:450947693009:web:ab539d7233e04f8c0b48f0",
+  measurementId: "G-1MPMEREY1K"
 };
 
 // Initialize Firebase
@@ -21,6 +23,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const auth = firebase.auth();
 const storage = firebase.storage();
+const analytics = firebase.analytics();
 
 // Helper: Get storage download URL from gs:// path
 async function getStorageUrl(gsPath) {
