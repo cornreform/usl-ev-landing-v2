@@ -1,1 +1,45 @@
-const CACHE_NAME = 'usl-pwa-cache-v1';\nconst urlsToCache = [\n  '/',\n  '/styles.min.css',\n  '/mobile-styles.min.css',\n  '/script.js',\n  '/firebase-config.js'\n];\n\nself.addEventListener('install', function(event) {\n  event.waitUntil(\n    caches.open(CACHE_NAME)\n      .then(function(cache) {\n        console.log('Opened cache');\n        return cache.addAll(urlsToCache);\n      })\n  );\n});\n\nself.addEventListener('fetch', function(event) {\n  event.respondWith(\n    caches.match(event.request)\n      .then(function(response) {\n        if (response) {\n          return response;\n        }\n        return fetch(event.request);\n      })\n  );\n});\n\nself.addEventListener('activate', function(event) {\n  event.waitUntil(\n    caches.keys().then(function(cacheNames) {\n      return Promise.all(\n        cacheNames.map(function(cacheName) {\n          if (cacheName !== CACHE_NAME) {\n            console.log('Deleting old cache', cacheName);\n            return caches.delete(cacheName);\n          }\n        })\n      );\n    })\n  );\n});
+const CACHE_NAME = 'usl-pwa-cache-v2';
+const urlsToCache = [
+  '/',
+  '/styles.min.css',
+  '/mobile-styles.min.css',
+  '/script.js',
+  '/firebase-config.js'
+];
+
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        console.log('Opened cache');
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request)
+      .then(function(response) {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
+      })
+  );
+});
+
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.map(function(cacheName) {
+          if (cacheName !== CACHE_NAME) {
+            console.log('Deleting old cache', cacheName);
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+});
