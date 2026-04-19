@@ -375,6 +375,10 @@ function initStatsCounter() {
     if (!stats.length) return;
 
     const animateCounter = (element) => {
+        // Skip if already animated
+        if (element.classList.contains('counted')) return;
+        element.classList.add('counted');
+
         const target = parseInt(element.dataset.target);
         const duration = 2000;
         const step = target / (duration / 16);
@@ -393,6 +397,7 @@ function initStatsCounter() {
         update();
     };
 
+    // Use a dedicated observer for stats
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach(entry => {
@@ -402,10 +407,24 @@ function initStatsCounter() {
                 }
             });
         },
-        { threshold: 0.1, rootMargin: '0px 0px -10px 0px' }
+        { threshold: 0.3 }
     );
 
+    // Observe stat-number elements directly
     stats.forEach(stat => observer.observe(stat));
+
+    // Fallback: trigger after page load if not in viewport
+    setTimeout(() => {
+        stats.forEach(stat => {
+            if (!stat.classList.contains('counted')) {
+                const rect = stat.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    animateCounter(stat);
+                    observer.unobserve(stat);
+                }
+            }
+        });
+    }, 3000);
 }
 
 // ================================================
