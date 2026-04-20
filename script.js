@@ -380,24 +380,46 @@ function initStatsCounter() {
         element.classList.add('counted');
 
         const target = parseInt(element.dataset.target);
-        const duration = 2000;
-        const step = target / (duration / 16);
-        let current = 0;
+        if (isNaN(target)) return;
 
-        const update = () => {
-            current += step;
-            if (current < target) {
-                element.textContent = Math.floor(current);
+        const duration = 2000;
+        const startTime = performance.now();
+
+        const update = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function for smooth animation
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            const current = Math.floor(target * easeOutQuart);
+            
+            element.textContent = current;
+
+            if (progress < 1) {
                 requestAnimationFrame(update);
             } else {
                 element.textContent = target;
             }
         };
 
-        update();
+        requestAnimationFrame(update);
     };
 
-    // Use a dedicated observer for stats
+    // Check if element is in viewport
+    const isInViewport = (element) => {
+        const rect = element.getBoundingClientRect();
+        return rect.top < window.innerHeight && rect.bottom > 0;
+    };
+
+    // Animate immediately if already in viewport
+    stats.forEach(stat => {
+        if (isInViewport(stat) && !stat.classList.contains('counted')) {
+            // Small delay for visual effect
+            setTimeout(() => animateCounter(stat), 100);
+        }
+    });
+
+    // Use IntersectionObserver for elements not yet in viewport
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach(entry => {
@@ -407,24 +429,24 @@ function initStatsCounter() {
                 }
             });
         },
-        { threshold: 0.3 }
+        { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
     );
 
-    // Observe stat-number elements directly
-    stats.forEach(stat => observer.observe(stat));
+    // Observe stat-number elements that haven't been counted yet
+    stats.forEach(stat => {
+        if (!stat.classList.contains('counted')) {
+            observer.observe(stat);
+        }
+    });
 
-    // Fallback: trigger after page load if not in viewport
+    // Final fallback: force animate all remaining after 2 seconds
     setTimeout(() => {
         stats.forEach(stat => {
             if (!stat.classList.contains('counted')) {
-                const rect = stat.getBoundingClientRect();
-                if (rect.top < window.innerHeight) {
-                    animateCounter(stat);
-                    observer.unobserve(stat);
-                }
+                animateCounter(stat);
             }
         });
-    }, 3000);
+    }, 2000);
 }
 
 // ================================================
