@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://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@github.com/sunnycsl/ultimate-speed.git"
+    "url": "git+https://github.com/cornreform/ultimate-speed.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sunnycsl/ultimate-speed/issues"
+    "url": "https://github.com/cornreform/ultimate-speed/issues"
   },
-  "homepage": "https://github.com/sunnycsl/ultimate-speed#readme",
+  "homepage": "https://github.com/cornreform/ultimate-speed#readme"
   "devDependencies": {
     "cssnano": "^7.1.5"
   }
