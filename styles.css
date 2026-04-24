@@ -2588,21 +2588,27 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     background: rgba(255,255,255,0.15);
     color: #fff;
 }
-/* Arrow pointer - DOWN arrow pointing to bottom of screen */
-.pwa-modal-arrow {
-    text-align: center;
-    padding: 8px 20px 2px;
+/* Bouncing corner arrow - targets bottom-right share button */
+.pwa-corner-arrow {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    z-index: 10001;
     color: #00A8E0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
 }
-.pwa-modal-arrow svg {
-    width: 22px;
-    height: 22px;
-    animation: pwa-arrow-bounce-down 2s ease-in-out infinite;
+.pwa-corner-arrow.visible { opacity: 1; }
+.pwa-corner-arrow svg {
+    animation: corner-arrow-bounce 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 2px 8px rgba(0, 168, 224, 0.5));
 }
-@keyframes pwa-arrow-bounce-down {
-    0%, 100% { opacity: 0.5; transform: translateY(-3px); }
-    50% { opacity: 1; transform: translateY(3px); }
+@keyframes corner-arrow-bounce {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+    50% { transform: translateY(8px) rotate(5deg); opacity: 1; }
 }
+
 /* Install guide steps */
 .pwa-modal-body {
     padding: 0 20px 20px;
@@ -2643,18 +2649,6 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     color: #fff;
     font-weight: 600;
 }
-/* iOS share button icon - SVG has its own blue background */
-.pwa-modal-step.ios-step {
-    gap: 14px;
-}
-.pwa-modal-step.ios-step .pwa-modal-step-icon {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
 .pwa-modal-step.android .pwa-modal-step-num { background: #4CAF50; }
 .pwa-modal-step-num.android {
     background: #4CAF50;
@@ -2673,9 +2667,6 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     }
     .pwa-overlay.show .pwa-modal {
         transform: translateX(-50%) scale(1) translateY(0);
-    }
-    .pwa-modal-arrow {
-        padding: 8px 20px 0;
     }
 }
 
