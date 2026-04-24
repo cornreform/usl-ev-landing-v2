@@ -1239,12 +1239,13 @@ function initPWABanner() {
         stepsEl.innerHTML = `
             <div class="pwa-modal-step ios-step">
                 <div class="pwa-modal-step-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="18 15 12 9 6 15"/>
-                        <line x1="12" y1="9" x2="12" y2="21"/>
+                    <!-- iOS share icon: rounded square with upward arrow -->
+                    <svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="16" height="16" rx="3.5" fill="#007AFF"/>
+                        <path d="M10 6V14M10 6L7 9M10 6L13 9" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
-                <div class="pwa-modal-step-text">點擊底部 <strong>分享按鈕</strong></div>
+                <div class="pwa-modal-step-text">點擊底部 <strong>分享按鈕</strong>（右下角）</div>
             </div>
             <div class="pwa-modal-step">
                 <div class="pwa-modal-step-num">2</div>
