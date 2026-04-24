@@ -1199,6 +1199,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initVehicleGrid();
     initStatsCounter();
     initContactForm();
+    initPWABanner();
+    initFBSharePrompt();
 
     // PWA Service Worker Registration
     if ('serviceWorker' in navigator) {
@@ -1211,3 +1213,98 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 });
+
+// ================================================
+// PWA Install Banner
+// ================================================
+function initPWABanner() {
+    const banner = document.getElementById('pwaBanner');
+    const closeBtn = document.getElementById('pwaBannerClose');
+    const descEl = document.getElementById('pwaBannerDesc');
+    const guideEl = document.getElementById('pwaInstallGuide');
+    if (!banner || !closeBtn) return;
+
+    // Check if already dismissed
+    if (sessionStorage.getItem('pwaBannerDismissed')) return;
+
+    // Detect iOS/Android
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+
+    // If already in PWA mode, skip
+    if (isStandalone) return;
+
+    // Show banner after short delay
+    setTimeout(() => {
+        banner.classList.add('show');
+        renderInstallGuide(guideEl, isIOS, isAndroid);
+    }, 2000);
+
+    // Close button
+    closeBtn.addEventListener('click', () => {
+        banner.classList.remove('show');
+        sessionStorage.setItem('pwaBannerDismissed', '1');
+    });
+}
+
+function renderInstallGuide(el, isIOS, isAndroid) {
+    el.className = 'pwa-install-guide ' + (isIOS ? 'ios' : 'android');
+    if (isIOS) {
+        el.innerHTML = `
+            <h4>iOS Safari 安裝指引</h4>
+            <div class="guide-steps">
+                <div class="guide-step"><span class="step-num">1</span><span>點擊下方分享按鈕 <strong>⬆</strong></span></div>
+                <div class="guide-step"><span class="step-num">2</span><span>向下滾動，點擊 <strong>「加入主畫面」</strong></span></div>
+                <div class="guide-step"><span class="step-num">3</span><span>點擊右上角 <strong>「新增」</strong> 完成</span></div>
+            </div>`;
+    } else if (isAndroid) {
+        el.innerHTML = `
+            <h4>Android Chrome 安裝指引</h4>
+            <div class="guide-steps">
+                <div class="guide-step"><span class="step-num">1</span><span>點擊右上角 <strong>⋮</strong> 選單</span></div>
+                <div class="guide-step"><span class="step-num">2</span><span>點擊 <strong>「加入主畫面」</strong> 或 <strong>「安裝應用程式」</strong></span></div>
+                <div class="guide-step"><span class="step-num">3</span><span>確認安裝即可</span></div>
+            </div>`;
+    } else {
+        el.innerHTML = `
+            <h4>電腦瀏覽器</h4>
+            <div class="guide-steps">
+                <div class="guide-step"><span class="step-num">1</span><span>按 <strong>Ctrl+D</strong> (Windows) 或 <strong>Cmd+D</strong> (Mac) 加入書籤</span></div>
+                <div class="guide-step"><span class="step-num">2</span><span>在書籤列拖放到桌面捷徑</span></div>
+            </div>`;
+    }
+}
+
+// ================================================
+// Facebook Share Prompt
+// ================================================
+function initFBSharePrompt() {
+    const prompt = document.getElementById('fbSharePrompt');
+    const shareBtn = document.getElementById('fbShareBtn');
+    const closeBtn = document.getElementById('fbShareClose');
+    if (!prompt || !shareBtn || !closeBtn) return;
+
+    // Check OG tags exist
+    const ogImage = document.querySelector('meta[property="og:image"]');
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+
+    // Show prompt after delay if OG tags missing
+    setTimeout(() => {
+        if (!ogImage || !ogTitle) {
+            prompt.classList.add('show');
+        }
+    }, 5000);
+
+    // Dismiss on close
+    closeBtn.addEventListener('click', () => {
+        prompt.classList.remove('show');
+        sessionStorage.setItem('fbPromptDismissed', '1');
+    });
+
+    // Share button
+    shareBtn.addEventListener('click', () => {
+        const url = encodeURIComponent(window.location.href);
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+    });
+}

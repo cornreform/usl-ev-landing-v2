@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Ultimate Speed Limited | 高端電動車進口</title>
     <meta name="description" content="Ultimate Speed Limited 專營高端電動車進口業務，為香港消費者引進最優質的電動車，涵蓋英國、澳洲、南非、日本及更多地區。">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cornreform.github.io/usl-ev-landing-v2/">
+    <meta property="og:title" content="Ultimate Speed Limited | 高端電動車進口">
+    <meta property="og:description" content="專業搜羅全球頂級電動車，英國、澳洲、南非、日本等國家直送香港。10年+經驗，一站式服務。">
+    <meta property="og:image" content="https://cornreform.github.io/usl-ev-landing-v2/images/og-image.png">
+    <meta property="og:site_name" content="Ultimate Speed Limited">
+    <meta name="fb:app_id" content="">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ultimate Speed Limited | 高端電動車進口">
+    <meta name="twitter:description" content="專業搜羅全球頂級電動車，英國、澳洲、南非、日本等國家直送香港。">
+    <meta name="twitter:image" content="https://cornreform.github.io/usl-ev-landing-v2/images/og-image.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
@@ -25,6 +38,49 @@
     <link rel="apple-touch-icon" href="images/logo-192.png">
 </head>
 <body>
+    <!-- PWA / Install Banner -->
+    <div class="pwa-banner" id="pwaBanner">
+        <div class="pwa-banner-content">
+            <div class="pwa-banner-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <div class="pwa-banner-text">
+                <strong>加入主畫面</strong>
+                <span id="pwaBannerDesc">將網站加入主畫面，快速訪問並離線瀏覽</span>
+            </div>
+            <button class="pwa-banner-close" id="pwaBannerClose" aria-label="關閉">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="pwa-banner-expand" id="pwaBannerExpand">
+            <div class="pwa-install-guide" id="pwaInstallGuide">
+                <!-- Dynamic: iOS or Android instructions -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Facebook Share Prompt -->
+    <div class="fb-share-prompt" id="fbSharePrompt">
+        <div class="fb-share-content">
+            <div class="fb-share-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                </svg>
+            </div>
+            <span>覺得有用？分享俾朋友知</span>
+            <button class="fb-share-btn" id="fbShareBtn">分享</button>
+            <button class="fb-share-close" id="fbShareClose" aria-label="關閉">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</body>
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav-container">
