@@ -4,11 +4,12 @@
  */
 
 const CACHE_NAME = 'usl-admin-v1';
+const BASE_PATH = '/usl-ev-landing-v2';
 const STATIC_ASSETS = [
-  '/admin/index.html',
-  '/admin/styles.css',
-  '/admin/script.js',
-  '/admin/firebase-config.js'
+  `${BASE_PATH}/admin/index.html`,
+  `${BASE_PATH}/admin/styles.css`,
+  `${BASE_PATH}/admin/script.js`,
+  `${BASE_PATH}/admin/firebase-config.js`
 ];
 
 // Install: Cache static assets
@@ -69,7 +70,7 @@ self.addEventListener('fetch', (event) => {
     }).catch(() => {
       // Fallback for HTML pages
       if (request.mode === 'navigate') {
-        return caches.match('/admin/index.html');
+        return caches.match(`${BASE_PATH}/admin/index.html`);
       }
     })
   );
