@@ -2496,16 +2496,22 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
    ================================================ */
 .pwa-banner {
     position: fixed;
-    bottom: -100%;
+    bottom: 0;
     left: 0;
     right: 0;
     background: linear-gradient(135deg, #0D0D0D 0%, #1a1a2e 100%);
     border-top: 1px solid rgba(0, 168, 224, 0.3);
     z-index: 2000;
-    transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     font-family: 'Inter', sans-serif;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transform: translateY(100%);
 }
-.pwa-banner.show { bottom: 0; }
+.pwa-banner.show { 
+    bottom: 0; 
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+}
 .pwa-banner-content {
     display: flex;
     align-items: center;
@@ -2660,6 +2666,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
 @media (max-width: 480px) {
     .pwa-banner-content { padding: 10px 12px; }
     .pwa-banner-text strong { font-size: 13px; }
+    .pwa-banner-expand { max-height: 350px; overflow-y: auto; }
     .fb-share-prompt {
         top: auto;
         bottom: 60px;
