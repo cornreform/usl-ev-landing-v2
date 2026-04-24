@@ -296,10 +296,12 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
    Hero Section
    ================================================ */
 
+/* Hero: use height instead of min-height to prevent iOS Safari viewport shifting */
 .hero {
     position: relative;
-    min-height: 100vh;
-    min-height: 100dvh;
+    height: 100vh;
+    height: 100dvh;
+    height: -webkit-fill-available;
     display: flex;
     align-items: center;
     justify-content: center;

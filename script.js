@@ -6,6 +6,9 @@
 // Prevent iOS Safari from restoring scroll position on back/forward navigation
 history.scrollRestoration = 'manual';
 
+// Force scroll to top on initial page load (handles PWA install prompt restoring scroll)
+window.scrollTo(0, 0);
+
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initMobileMenu();
