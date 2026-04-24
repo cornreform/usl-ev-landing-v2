@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/cornreform/ultimate-speed/issues"
   },
-  "homepage": "https://github.com/cornreform/ultimate-speed#readme"
+  "homepage": "https://github.com/cornreform/ultimate-speed#readme",
   "devDependencies": {
     "cssnano": "^7.1.5"
   }
