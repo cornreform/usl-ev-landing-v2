@@ -3,6 +3,9 @@
  * Ambient Luxury EV Website
  */
 
+// Prevent iOS Safari from restoring scroll position on back/forward navigation
+history.scrollRestoration = 'manual';
+
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initMobileMenu();
