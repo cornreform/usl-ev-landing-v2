@@ -1254,9 +1254,9 @@ function renderInstallGuide(el, isIOS, isAndroid) {
         el.innerHTML = `
             <h4>iOS Safari 安裝指引</h4>
             <div class="guide-steps">
-                <div class="guide-step"><span class="step-num">1</span><span>點擊下方分享按鈕 <strong>⬆</strong></span></div>
+                <div class="guide-step"><span class="step-num">1</span><span>點擊底部 <strong>分享按鈕</strong> ⬆️</span></div>
                 <div class="guide-step"><span class="step-num">2</span><span>向下滾動，點擊 <strong>「加入主畫面」</strong></span></div>
-                <div class="guide-step"><span class="step-num">3</span><span>點擊右上角 <strong>「新增」</strong> 完成</span></div>
+                <div class="guide-step"><span class="step-num">3</span><span>點擊右上角 <strong>「加入」</strong> 完成</span></div>
             </div>`;
     } else if (isAndroid) {
         el.innerHTML = `
