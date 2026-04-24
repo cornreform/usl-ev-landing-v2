@@ -7,7 +7,13 @@
 history.scrollRestoration = 'manual';
 
 // Force scroll to top on initial page load (handles PWA install prompt restoring scroll)
-window.scrollTo(0, 0);
+function resetScrollToTop() {
+    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); // Double-call for iOS Safari
+}
+resetScrollToTop();
+requestAnimationFrame(resetScrollToTop);
+window.addEventListener('load', resetScrollToTop);
 
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
