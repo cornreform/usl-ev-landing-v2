@@ -1237,9 +1237,14 @@ function initPWABanner() {
     // Build steps based on platform
     if (isIOS) {
         stepsEl.innerHTML = `
-            <div class="pwa-modal-step">
-                <div class="pwa-modal-step-num">1</div>
-                <div class="pwa-modal-step-text">點擊底部 <strong>分享按鈕</strong> ⬆️</div>
+            <div class="pwa-modal-step ios-step">
+                <div class="pwa-modal-step-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="18 15 12 9 6 15"/>
+                        <line x1="12" y1="9" x2="12" y2="21"/>
+                    </svg>
+                </div>
+                <div class="pwa-modal-step-text">點擊底部 <strong>分享按鈕</strong></div>
             </div>
             <div class="pwa-modal-step">
                 <div class="pwa-modal-step-num">2</div>
@@ -1251,17 +1256,13 @@ function initPWABanner() {
             </div>`;
     } else if (isAndroid) {
         stepsEl.innerHTML = `
-            <div class="pwa-modal-step android">
-                <div class="pwa-modal-step-num">1</div>
-                <div class="pwa-modal-step-text">點擊右上角 <strong>⋮</strong> 選單</div>
+            <div class="pwa-modal-step">
+                <div class="pwa-modal-step-num android">⋮</div>
+                <div class="pwa-modal-step-text">點擊右上角 <strong>選單</strong></div>
             </div>
-            <div class="pwa-modal-step android">
-                <div class="pwa-modal-step-num">2</div>
-                <div class="pwa-modal-step-text">點擊 <strong>「加入主畫面」</strong> 或 <strong>「安裝應用程式」</strong></div>
-            </div>
-            <div class="pwa-modal-step android">
-                <div class="pwa-modal-step-num">3</div>
-                <div class="pwa-modal-step-text">確認安裝即可</div>
+            <div class="pwa-modal-step">
+                <div class="pwa-modal-step-num android">✓</div>
+                <div class="pwa-modal-step-text">點擊 <strong>「加入主畫面」</strong></div>
             </div>`;
     } else {
         stepsEl.innerHTML = `

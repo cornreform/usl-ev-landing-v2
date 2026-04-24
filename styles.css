@@ -2588,17 +2588,21 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     background: rgba(255,255,255,0.15);
     color: #fff;
 }
-/* Arrow pointer */
+/* Arrow pointer - iOS-style upward arrow with gentle pulse */
 .pwa-modal-arrow {
     text-align: center;
-    padding: 12px 20px 4px;
+    padding: 10px 20px 2px;
     color: #00A8E0;
-    font-size: 24px;
-    animation: pwa-bounce-arrow 1.5s ease-in-out infinite;
 }
-@keyframes pwa-bounce-arrow {
-    0%, 100% { transform: translateY(0); opacity: 0.7; }
-    50% { transform: translateY(6px); opacity: 1; }
+.pwa-modal-arrow svg {
+    width: 20px;
+    height: 20px;
+    animation: pwa-arrow-pulse 2s ease-in-out infinite;
+    opacity: 0.7;
+}
+@keyframes pwa-arrow-pulse {
+    0%, 100% { opacity: 0.5; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.1); }
 }
 /* Install guide steps */
 .pwa-modal-body {
@@ -2640,7 +2644,29 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     color: #fff;
     font-weight: 600;
 }
+/* iOS share button icon style */
+.pwa-modal-step.ios-step {
+    gap: 14px;
+}
+.pwa-modal-step.ios-step .pwa-modal-step-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 168, 224, 0.2);
+    border: 1px solid rgba(0, 168, 224, 0.4);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00A8E0;
+    flex-shrink: 0;
+}
 .pwa-modal-step.android .pwa-modal-step-num { background: #4CAF50; }
+.pwa-modal-step-num.android {
+    background: #4CAF50;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+}
 /* Mobile: position closer to bottom action area */
 @media (max-width: 480px) {
     .pwa-modal {
