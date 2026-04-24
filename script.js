@@ -1215,14 +1215,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ================================================
-// PWA Install Banner
+// PWA Install Overlay Modal
 // ================================================
 function initPWABanner() {
-    const banner = document.getElementById('pwaBanner');
-    const closeBtn = document.getElementById('pwaBannerClose');
-    const descEl = document.getElementById('pwaBannerDesc');
-    const guideEl = document.getElementById('pwaInstallGuide');
-    if (!banner || !closeBtn) return;
+    const overlay = document.getElementById('pwaOverlay');
+    const closeBtn = document.getElementById('pwaModalClose');
+    const stepsEl = document.getElementById('pwaModalSteps');
+    if (!overlay || !closeBtn) return;
 
     // Check if already dismissed
     if (sessionStorage.getItem('pwaBannerDismissed')) return;
@@ -1232,48 +1231,66 @@ function initPWABanner() {
     const isAndroid = /Android/.test(navigator.userAgent);
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
 
-    // If already in PWA mode, skip
+    // If already in PWA mode, skip entirely
     if (isStandalone) return;
 
-    // Show banner after short delay
-    setTimeout(() => {
-        banner.classList.add('show');
-        renderInstallGuide(guideEl, isIOS, isAndroid);
-    }, 2000);
-
-    // Close button
-    closeBtn.addEventListener('click', () => {
-        banner.classList.remove('show');
-        sessionStorage.setItem('pwaBannerDismissed', '1');
-    });
-}
-
-function renderInstallGuide(el, isIOS, isAndroid) {
-    el.className = 'pwa-install-guide ' + (isIOS ? 'ios' : 'android');
+    // Build steps based on platform
     if (isIOS) {
-        el.innerHTML = `
-            <h4>iOS Safari 安裝指引</h4>
-            <div class="guide-steps">
-                <div class="guide-step"><span class="step-num">1</span><span>點擊底部 <strong>分享按鈕</strong> ⬆️</span></div>
-                <div class="guide-step"><span class="step-num">2</span><span>向下滾動，點擊 <strong>「加入主畫面」</strong></span></div>
-                <div class="guide-step"><span class="step-num">3</span><span>點擊右上角 <strong>「加入」</strong> 完成</span></div>
+        stepsEl.innerHTML = `
+            <div class="pwa-modal-step">
+                <div class="pwa-modal-step-num">1</div>
+                <div class="pwa-modal-step-text">點擊底部 <strong>分享按鈕</strong> ⬆️</div>
+            </div>
+            <div class="pwa-modal-step">
+                <div class="pwa-modal-step-num">2</div>
+                <div class="pwa-modal-step-text">向下滾動，點擊 <strong>「加入主畫面」</strong></div>
+            </div>
+            <div class="pwa-modal-step">
+                <div class="pwa-modal-step-num">3</div>
+                <div class="pwa-modal-step-text">點擊右上角 <strong>「加入」</strong> 完成</div>
             </div>`;
     } else if (isAndroid) {
-        el.innerHTML = `
-            <h4>Android Chrome 安裝指引</h4>
-            <div class="guide-steps">
-                <div class="guide-step"><span class="step-num">1</span><span>點擊右上角 <strong>⋮</strong> 選單</span></div>
-                <div class="guide-step"><span class="step-num">2</span><span>點擊 <strong>「加入主畫面」</strong> 或 <strong>「安裝應用程式」</strong></span></div>
-                <div class="guide-step"><span class="step-num">3</span><span>確認安裝即可</span></div>
+        stepsEl.innerHTML = `
+            <div class="pwa-modal-step android">
+                <div class="pwa-modal-step-num">1</div>
+                <div class="pwa-modal-step-text">點擊右上角 <strong>⋮</strong> 選單</div>
+            </div>
+            <div class="pwa-modal-step android">
+                <div class="pwa-modal-step-num">2</div>
+                <div class="pwa-modal-step-text">點擊 <strong>「加入主畫面」</strong> 或 <strong>「安裝應用程式」</strong></div>
+            </div>
+            <div class="pwa-modal-step android">
+                <div class="pwa-modal-step-num">3</div>
+                <div class="pwa-modal-step-text">確認安裝即可</div>
             </div>`;
     } else {
-        el.innerHTML = `
-            <h4>電腦瀏覽器</h4>
-            <div class="guide-steps">
-                <div class="guide-step"><span class="step-num">1</span><span>按 <strong>Ctrl+D</strong> (Windows) 或 <strong>Cmd+D</strong> (Mac) 加入書籤</span></div>
-                <div class="guide-step"><span class="step-num">2</span><span>在書籤列拖放到桌面捷徑</span></div>
+        stepsEl.innerHTML = `
+            <div class="pwa-modal-step">
+                <div class="pwa-modal-step-num">1</div>
+                <div class="pwa-modal-step-text">按 <strong>Ctrl+D</strong> (Windows) 或 <strong>Cmd+D</strong> (Mac) 加入書籤</div>
+            </div>
+            <div class="pwa-modal-step">
+                <div class="pwa-modal-step-num">2</div>
+                <div class="pwa-modal-step-text">在書籤列拖放到桌面捷徑</div>
             </div>`;
     }
+
+    // Show overlay after short delay
+    setTimeout(() => {
+        overlay.classList.add('show');
+    }, 2000);
+
+    // Close on button click
+    closeBtn.addEventListener('click', () => {
+        overlay.classList.remove('show');
+        sessionStorage.setItem('pwaBannerDismissed', '1');
+    });
+
+    // Close on backdrop click
+    overlay.querySelector('.pwa-overlay-backdrop').addEventListener('click', () => {
+        overlay.classList.remove('show');
+        sessionStorage.setItem('pwaBannerDismissed', '1');
+    });
 }
 
 // ================================================

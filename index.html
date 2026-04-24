@@ -38,27 +38,29 @@
     <link rel="apple-touch-icon" href="images/logo-192.png">
 </head>
 <body>
-    <!-- PWA / Install Banner -->
-    <div class="pwa-banner" id="pwaBanner">
-        <div class="pwa-banner-content">
-            <div class="pwa-banner-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
+    <!-- PWA Install Overlay Modal -->
+    <div class="pwa-overlay" id="pwaOverlay">
+        <div class="pwa-overlay-backdrop"></div>
+        <div class="pwa-modal">
+            <div class="pwa-modal-header">
+                <div class="pwa-modal-icon">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div class="pwa-modal-title">
+                    <h3>加入主畫面</h3>
+                    <p>將網站加入主畫面，快速訪問</p>
+                </div>
+                <button class="pwa-modal-close" id="pwaModalClose" aria-label="關閉">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
             </div>
-            <div class="pwa-banner-text">
-                <strong>加入主畫面</strong>
-                <span id="pwaBannerDesc">將網站加入主畫面，快速訪問並離線瀏覽</span>
-            </div>
-            <button class="pwa-banner-close" id="pwaBannerClose" aria-label="關閉">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-                </svg>
-            </button>
-        </div>
-        <div class="pwa-banner-expand" id="pwaBannerExpand">
-            <div class="pwa-install-guide" id="pwaInstallGuide">
-                <!-- Dynamic: iOS or Android instructions -->
+            <div class="pwa-modal-arrow">⬇️</div>
+            <div class="pwa-modal-body">
+                <div class="pwa-modal-steps" id="pwaModalSteps"></div>
             </div>
         </div>
     </div>

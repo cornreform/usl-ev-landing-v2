@@ -2492,121 +2492,171 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
 }
 
 /* ================================================
-   PWA Install Banner
+   PWA Install Overlay Modal
    ================================================ */
-.pwa-banner {
+.pwa-overlay {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(135deg, #0D0D0D 0%, #1a1a2e 100%);
-    border-top: 1px solid rgba(0, 168, 224, 0.3);
-    z-index: 2000;
-    font-family: 'Inter', sans-serif;
-    transform: translateY(100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    -webkit-transform: translateY(100%);
-}
-.pwa-banner.show { 
-    bottom: 0; 
-    transform: translateY(0);
-    -webkit-transform: translateY(0);
-}
-.pwa-banner-content {
+    inset: 0;
+    z-index: 9999;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    max-width: 1200px;
-    margin: 0 auto;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
-.pwa-banner-icon {
-    width: 40px;
-    height: 40px;
+.pwa-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+/* Semi-transparent backdrop */
+.pwa-overlay-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+/* Floating card */
+.pwa-modal {
+    position: relative;
+    background: linear-gradient(145deg, #1a1a2e 0%, #0D0D0D 100%);
+    border: 1px solid rgba(0, 168, 224, 0.4);
+    border-radius: 20px;
+    padding: 0;
+    max-width: 360px;
+    width: calc(100% - 32px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 168, 224, 0.1);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+.pwa-overlay.show .pwa-modal {
+    transform: scale(1) translateY(0);
+}
+/* Header with icon + close */
+.pwa-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px 20px 0;
+    gap: 12px;
+}
+.pwa-modal-icon {
+    width: 48px;
+    height: 48px;
     background: rgba(0, 168, 224, 0.15);
-    border-radius: 10px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #00A8E0;
     flex-shrink: 0;
 }
-.pwa-banner-text {
+.pwa-modal-title {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+    padding-top: 4px;
 }
-.pwa-banner-text strong {
+.pwa-modal-title h3 {
     color: #fff;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 4px;
 }
-.pwa-banner-text span {
-    color: rgba(255,255,255,0.7);
+.pwa-modal-title p {
+    color: rgba(255,255,255,0.6);
     font-size: 12px;
+    margin: 0;
+    line-height: 1.4;
 }
-.pwa-banner-close {
+.pwa-modal-close {
     width: 32px;
     height: 32px;
-    background: rgba(255,255,255,0.1);
-    border: none;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: 8px;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.6);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.2s;
+    flex-shrink: 0;
 }
-.pwa-banner-close:hover {
-    background: rgba(255,255,255,0.2);
+.pwa-modal-close:hover {
+    background: rgba(255,255,255,0.15);
     color: #fff;
 }
-.pwa-banner-expand {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+/* Arrow pointer */
+.pwa-modal-arrow {
+    text-align: center;
+    padding: 12px 20px 4px;
+    color: #00A8E0;
+    font-size: 24px;
+    animation: pwa-bounce-arrow 1.5s ease-in-out infinite;
 }
-.pwa-banner-expand.show { max-height: 400px; }
-.pwa-install-guide {
-    padding: 16px;
-    background: rgba(0,0,0,0.3);
+@keyframes pwa-bounce-arrow {
+    0%, 100% { transform: translateY(0); opacity: 0.7; }
+    50% { transform: translateY(6px); opacity: 1; }
 }
-.pwa-install-guide h4 {
-    color: #fff;
-    font-size: 13px;
-    margin: 0 0 12px;
-    font-weight: 600;
+/* Install guide steps */
+.pwa-modal-body {
+    padding: 0 20px 20px;
 }
-.pwa-install-guide .guide-steps {
+.pwa-modal-steps {
     display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
+    flex-direction: column;
+    gap: 10px;
 }
-.pwa-install-guide .guide-step {
+.pwa-modal-step {
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: rgba(255,255,255,0.85);
-    font-size: 13px;
+    gap: 12px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 12px 14px;
 }
-.pwa-install-guide .step-num {
-    width: 24px;
-    height: 24px;
+.pwa-modal-step-num {
+    width: 26px;
+    height: 26px;
     background: #00A8E0;
     color: #fff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     flex-shrink: 0;
 }
-.pwa-install-guide.ios .guide-steps { flex-direction: column; gap: 10px; }
-.pwa-install-guide.ios .guide-step { gap: 10px; }
-.pwa-install-guide.android .guide-step .step-num { background: #4CAF50; }
+.pwa-modal-step-text {
+    color: rgba(255,255,255,0.9);
+    font-size: 13px;
+    line-height: 1.4;
+}
+.pwa-modal-step-text strong {
+    color: #fff;
+    font-weight: 600;
+}
+.pwa-modal-step.android .pwa-modal-step-num { background: #4CAF50; }
+/* Mobile: position closer to bottom action area */
+@media (max-width: 480px) {
+    .pwa-modal {
+        position: absolute;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%) scale(0.9) translateY(20px);
+        max-width: calc(100% - 24px);
+    }
+    .pwa-overlay.show .pwa-modal {
+        transform: translateX(-50%) scale(1) translateY(0);
+    }
+    .pwa-modal-arrow {
+        padding: 8px 20px 0;
+    }
+}
 
 /* ================================================
    Facebook Share Prompt
