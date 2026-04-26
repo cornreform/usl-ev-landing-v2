@@ -1212,6 +1212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initStatsCounter();
     initContactForm();
     initPWABanner();
+    initCookieBanner();
     initFBSharePrompt();
 
     // PWA Service Worker Registration
@@ -1232,10 +1233,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function initPWABanner() {
     const overlay = document.getElementById('pwaOverlay');
     const closeBtn = document.getElementById('pwaModalClose');
+    const neverBtn = document.getElementById('pwaModalNever');
     const stepsEl = document.getElementById('pwaModalSteps');
     if (!overlay || !closeBtn) return;
 
-    // Check if already dismissed
+    // Check if permanently dismissed via localStorage
+    if (localStorage.getItem('pwaBannerNever')) return;
+    // Check if dismissed this session
     if (sessionStorage.getItem('pwaBannerDismissed')) return;
 
     // Detect iOS/Android
@@ -1289,18 +1293,73 @@ function initPWABanner() {
         document.getElementById('pwaCornerArrow').classList.add('visible');
     }, 2000);
 
-    // Close on button click
+    // Close on button click (dismiss for this session)
     closeBtn.addEventListener('click', () => {
         overlay.classList.remove('show');
         document.getElementById('pwaCornerArrow').classList.remove('visible');
         sessionStorage.setItem('pwaBannerDismissed', '1');
     });
 
-    // Close on backdrop click
+    // Close on backdrop click (dismiss for this session)
     overlay.querySelector('.pwa-overlay-backdrop').addEventListener('click', () => {
         overlay.classList.remove('show');
         document.getElementById('pwaCornerArrow').classList.remove('visible');
         sessionStorage.setItem('pwaBannerDismissed', '1');
+    });
+
+    // Never show again (permanent via localStorage)
+    if (neverBtn) {
+        neverBtn.addEventListener('click', () => {
+            localStorage.setItem('pwaBannerNever', '1');
+            overlay.classList.remove('show');
+            document.getElementById('pwaCornerArrow').classList.remove('visible');
+        });
+    }
+}
+
+// ================================================
+// Cookie Consent Banner
+// ================================================
+function initCookieBanner() {
+    const overlay = document.getElementById('cookieOverlay');
+    const acceptBtn = document.getElementById('cookieAccept');
+    const rejectBtn = document.getElementById('cookieReject');
+    const neverBtn = document.getElementById('cookieNever');
+    if (!overlay || !acceptBtn || !rejectBtn || !neverBtn) return;
+
+    // Check if already decided
+    const decision = localStorage.getItem('cookieConsent');
+    if (decision) return;
+
+    // Show banner
+    setTimeout(() => {
+        overlay.classList.add('show');
+    }, 1500);
+
+    // Accept cookies
+    acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        overlay.classList.remove('show');
+    });
+
+    // Reject cookies
+    rejectBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'rejected');
+        overlay.classList.remove('show');
+    });
+
+    // Never show again
+    neverBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'never');
+        overlay.classList.remove('show');
+    });
+
+    // Close on backdrop click (acts as reject)
+    overlay.querySelector('.cookie-overlay') && overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            localStorage.setItem('cookieConsent', 'rejected');
+            overlay.classList.remove('show');
+        }
     });
 }
 
