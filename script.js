@@ -1324,8 +1324,7 @@ function initCookieBanner() {
     const overlay = document.getElementById('cookieOverlay');
     const acceptBtn = document.getElementById('cookieAccept');
     const rejectBtn = document.getElementById('cookieReject');
-    const neverBtn = document.getElementById('cookieNever');
-    if (!overlay || !acceptBtn || !rejectBtn || !neverBtn) return;
+    if (!overlay || !acceptBtn || !rejectBtn) return;
 
     // Check if already decided
     const decision = localStorage.getItem('cookieConsent');
@@ -1345,12 +1344,6 @@ function initCookieBanner() {
     // Reject cookies
     rejectBtn.addEventListener('click', () => {
         localStorage.setItem('cookieConsent', 'rejected');
-        overlay.classList.remove('show');
-    });
-
-    // Never show again
-    neverBtn.addEventListener('click', () => {
-        localStorage.setItem('cookieConsent', 'never');
         overlay.classList.remove('show');
     });
 
