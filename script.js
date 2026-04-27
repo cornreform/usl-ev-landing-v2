@@ -1238,12 +1238,13 @@ function initPWABanner() {
     if (!overlay || !closeBtn) return;
 
     // Check if permanently dismissed via localStorage
-    if (localStorage.getItem('pwaBannerNever')) return;
+    if (localStorage.getItem('pwaBannerNever') || sessionStorage.getItem('pwaBannerNever')) return;
     // Check if dismissed this session
     if (sessionStorage.getItem('pwaBannerDismissed')) return;
 
-    // Phase 1: If cookieConsent is not set, skip PWA (wait for cookie first)
-    if (!localStorage.getItem('cookieConsent')) return;
+    // Phase 1: If cookie modal hasn't been shown yet this session, skip PWA (wait for cookie first)
+    // Cookie modal sets sessionStorage 'cookieModalShown' when user makes a choice
+    if (!sessionStorage.getItem('cookieModalShown')) return;
 
     // Detect iOS/Android
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -1313,7 +1314,7 @@ function initPWABanner() {
     // Never show again (permanent via localStorage)
     if (neverBtn) {
         neverBtn.addEventListener('click', () => {
-            localStorage.setItem('pwaBannerNever', '1');
+            sessionStorage.setItem('pwaBannerNever', '1');
             overlay.classList.remove('show');
             document.getElementById('pwaCornerArrow').classList.remove('visible');
         });
@@ -1329,9 +1330,10 @@ function initCookieBanner() {
     const rejectBtn = document.getElementById('cookieReject');
     if (!overlay || !acceptBtn || !rejectBtn) return;
 
-    // Check if already decided
-    const decision = localStorage.getItem('cookieConsent');
-    if (decision) return;
+    // Check if already decided (accepted = show never again, rejected = show again next visit)
+    const accepted = localStorage.getItem('cookieConsent');
+    const rejected = sessionStorage.getItem('cookieConsent');
+    if (accepted || rejected) return;
 
     // Show banner
     setTimeout(() => {
@@ -1341,24 +1343,26 @@ function initCookieBanner() {
     // Accept cookies
     acceptBtn.addEventListener('click', () => {
         localStorage.setItem('cookieConsent', 'accepted');
+        sessionStorage.setItem('cookieModalShown', '1');
         overlay.classList.remove('show');
         // Phase 2: trigger PWA banner after cookie consent
         setTimeout(triggerPWABanner, 300);
     });
 
-    // Reject cookies
+    // Reject cookies - do NOT store anything so it reappears on next visit
+    // (no localStorage/sessionStorage set = localStorage=null, next visit will reappear)
     rejectBtn.addEventListener('click', () => {
-        localStorage.setItem('cookieConsent', 'rejected');
+        sessionStorage.setItem('cookieModalShown', '1');
         overlay.classList.remove('show');
         // Phase 2: trigger PWA banner even if rejected
         setTimeout(triggerPWABanner, 300);
     });
 
-    // Close on backdrop click (acts as reject)
+    // Close on backdrop click (acts as reject) - do NOT store anything
     const backdrop = overlay.querySelector('.cookie-backdrop');
     if (backdrop) {
         backdrop.addEventListener('click', () => {
-            localStorage.setItem('cookieConsent', 'rejected');
+            sessionStorage.setItem('cookieModalShown', '1');
             overlay.classList.remove('show');
             // Phase 2: trigger PWA banner even if rejected via backdrop
             setTimeout(triggerPWABanner, 300);
@@ -1369,7 +1373,7 @@ function initCookieBanner() {
 // Phase 2: Trigger PWA banner after cookie consent
 function triggerPWABanner() {
     // Re-check dismissal state
-    if (localStorage.getItem('pwaBannerNever')) return;
+    if (localStorage.getItem('pwaBannerNever') || sessionStorage.getItem('pwaBannerNever')) return;
     if (sessionStorage.getItem('pwaBannerDismissed')) return;
 
     const overlay = document.getElementById('pwaOverlay');
@@ -1445,7 +1449,7 @@ function triggerPWABanner() {
     const neverBtn = document.getElementById('pwaModalNever');
     if (neverBtn) {
         neverBtn.addEventListener('click', () => {
-            localStorage.setItem('pwaBannerNever', '1');
+            sessionStorage.setItem('pwaBannerNever', '1');
             overlay.classList.remove('show');
             if (arrow) arrow.classList.remove('visible');
         }, { once: true });
