@@ -1242,6 +1242,9 @@ function initPWABanner() {
     // Check if dismissed this session
     if (sessionStorage.getItem('pwaBannerDismissed')) return;
 
+    // Phase 1: If cookieConsent is not set, skip PWA (wait for cookie first)
+    if (!localStorage.getItem('cookieConsent')) return;
+
     // Detect iOS/Android
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const isAndroid = /Android/.test(navigator.userAgent);
@@ -1339,12 +1342,16 @@ function initCookieBanner() {
     acceptBtn.addEventListener('click', () => {
         localStorage.setItem('cookieConsent', 'accepted');
         overlay.classList.remove('show');
+        // Phase 2: trigger PWA banner after cookie consent
+        setTimeout(triggerPWABanner, 300);
     });
 
     // Reject cookies
     rejectBtn.addEventListener('click', () => {
         localStorage.setItem('cookieConsent', 'rejected');
         overlay.classList.remove('show');
+        // Phase 2: trigger PWA banner even if rejected
+        setTimeout(triggerPWABanner, 300);
     });
 
     // Close on backdrop click (acts as reject)
@@ -1353,7 +1360,95 @@ function initCookieBanner() {
         backdrop.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'rejected');
             overlay.classList.remove('show');
+            // Phase 2: trigger PWA banner even if rejected via backdrop
+            setTimeout(triggerPWABanner, 300);
         });
+    }
+}
+
+// Phase 2: Trigger PWA banner after cookie consent
+function triggerPWABanner() {
+    // Re-check dismissal state
+    if (localStorage.getItem('pwaBannerNever')) return;
+    if (sessionStorage.getItem('pwaBannerDismissed')) return;
+
+    const overlay = document.getElementById('pwaOverlay');
+    const stepsEl = document.getElementById('pwaModalSteps');
+    if (!overlay || !stepsEl) return;
+
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+    if (isStandalone) return;
+
+    // Build steps based on platform
+    if (isIOS) {
+        stepsEl.innerHTML = `
+            <div class="pwa-modal-step">
+                <div class="pwa-modal-step-num">1</div>
+                <div class="pwa-modal-step-text">點擊底部 <strong>分享按鈕</strong>（右下角）</div>
+            </div>
+            <div class="pwa-modal-step">
+                <div class="pwa-modal-step-num">2</div>
+                <div class="pwa-modal-step-text">向下滾動，點擊 <strong>「加入主畫面」</strong></div>
+            </div>
+            <div class="pwa-modal-step">
+                <div class="pwa-modal-step-num">3</div>
+                <div class="pwa-modal-step-text">點擊右上角 <strong>「加入」</strong> 完成</div>
+            </div>`;
+    } else if (isAndroid) {
+        stepsEl.innerHTML = `
+            <div class="pwa-modal-step">
+                <div class="pwa-modal-step-num android">⋮</div>
+                <div class="pwa-modal-step-text">點擊右上角 <strong>選單</strong></div>
+            </div>
+            <div class="pwa-modal-step">
+                <div class="pwa-modal-step-num android">✓</div>
+                <div class="pwa-modal-step-text">點擊 <strong>「加入主畫面」</strong></div>
+            </div>`;
+    } else {
+        stepsEl.innerHTML = `
+            <div class="pwa-modal-step">
+                <div class="pwa-modal-step-num">1</div>
+                <div class="pwa-modal-step-text">按 <strong>Ctrl+D</strong> (Windows) 或 <strong>Cmd+D</strong> (Mac) 加入書籤</div>
+            </div>
+            <div class="pwa-modal-step">
+                <div class="pwa-modal-step-num">2</div>
+                <div class="pwa-modal-step-text">在書籤列拖放到桌面捷徑</div>
+            </div>`;
+    }
+
+    // Show overlay + corner arrow
+    overlay.classList.add('show');
+    const arrow = document.getElementById('pwaCornerArrow');
+    if (arrow) arrow.classList.add('visible');
+
+    // Attach close handlers (single-use, so re-attach each time)
+    const closeBtn = document.getElementById('pwaModalClose');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            overlay.classList.remove('show');
+            if (arrow) arrow.classList.remove('visible');
+            sessionStorage.setItem('pwaBannerDismissed', '1');
+        }, { once: true });
+    }
+
+    const backdrop = overlay.querySelector('.pwa-overlay-backdrop');
+    if (backdrop) {
+        backdrop.addEventListener('click', () => {
+            overlay.classList.remove('show');
+            if (arrow) arrow.classList.remove('visible');
+            sessionStorage.setItem('pwaBannerDismissed', '1');
+        }, { once: true });
+    }
+
+    const neverBtn = document.getElementById('pwaModalNever');
+    if (neverBtn) {
+        neverBtn.addEventListener('click', () => {
+            localStorage.setItem('pwaBannerNever', '1');
+            overlay.classList.remove('show');
+            if (arrow) arrow.classList.remove('visible');
+        }, { once: true });
     }
 }
 
