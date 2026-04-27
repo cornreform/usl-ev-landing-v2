@@ -73,9 +73,10 @@
 
     <!-- Cookie Consent Banner -->
     <div class="cookie-overlay" id="cookieOverlay">
-        <div class="cookie-banner">
+        <div class="cookie-backdrop"></div>
+        <div class="cookie-modal">
             <div class="cookie-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <circle cx="12" cy="12" r="10"/>
                     <circle cx="8" cy="9" r="1.5" fill="currentColor"/>
                     <circle cx="15" cy="8" r="1" fill="currentColor"/>
@@ -84,10 +85,8 @@
                     <circle cx="12" cy="18" r="1" fill="currentColor"/>
                 </svg>
             </div>
-            <div class="cookie-text">
-                <h4>🍪 我們使用 Cookie</h4>
-                <p>為提升您的瀏覽體驗，我們會使用 Cookie 記住您的偏好設定。</p>
-            </div>
+            <div class="cookie-title">🍪 我們使用 Cookie</div>
+            <div class="cookie-desc">為提升您的瀏覽體驗，我們會使用 Cookie 記住您的偏好設定。</div>
             <div class="cookie-actions">
                 <button class="btn-cookie btn-cookie-reject" id="cookieReject">不同意</button>
                 <button class="btn-cookie btn-cookie-accept" id="cookieAccept">同意</button>

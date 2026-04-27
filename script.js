@@ -1348,12 +1348,13 @@ function initCookieBanner() {
     });
 
     // Close on backdrop click (acts as reject)
-    overlay.querySelector('.cookie-overlay') && overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) {
+    const backdrop = overlay.querySelector('.cookie-backdrop');
+    if (backdrop) {
+        backdrop.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'rejected');
             overlay.classList.remove('show');
-        }
-    });
+        });
+    }
 }
 
 // ================================================
