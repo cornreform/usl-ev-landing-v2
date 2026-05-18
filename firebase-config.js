@@ -31,7 +31,7 @@ async function getStorageUrl(gsPath) {
     const ref = firebase.storage().refFromURL(gsPath);
     return await ref.getDownloadURL();
   } catch (e) {
-    console.warn('Failed to get URL for', gsPath, e);
+    console.warn("Failed to get URL for", gsPath, e);
     return gsPath;
   }
 }
