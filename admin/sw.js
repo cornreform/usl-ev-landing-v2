@@ -3,7 +3,9 @@
  * Enables PWA functionality for admin panel
  */
 
-const CACHE_NAME = 'usl-admin-v1';
+// 🔧 Update CACHE_VERSION when deploying new code to force cache refresh
+const CACHE_VERSION = 'v1';
+const CACHE_NAME = `usl-admin-${CACHE_VERSION}`;
 const BASE_PATH = '/usl-ev-landing-v2';
 const STATIC_ASSETS = [
   `${BASE_PATH}/admin/index.html`,

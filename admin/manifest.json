@@ -2,7 +2,7 @@
   "name": "USL Admin",
   "short_name": "USL Admin",
   "description": "Ultimate Speed Limited - Vehicle Management System",
-  "start_url": "/admin/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0D0D0D",
   "theme_color": "#00A8E0",

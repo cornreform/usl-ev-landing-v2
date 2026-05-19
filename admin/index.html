@@ -324,6 +324,9 @@
     <script src="script.js"></script>
     <script>
         // Register Service Worker for PWA
+        // ⚠️ 重要：iOS 16.4+ PWA storage 同 Safari 隔離
+        // 首次 Save 做 PWA 後，請喺 PWA 入面親自 login 一次
+        // Firebase Auth session 先會 save 落 PWA 嘅 IndexedDB
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('sw.js')
