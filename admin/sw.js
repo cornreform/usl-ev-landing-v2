@@ -2,13 +2,19 @@
  * USL Admin - Service Worker
  * Enables PWA functionality for admin panel
  *
- * Cache strategy (zero-maintenance):
+ * CACHE_VERSION:
+ *   Bump this on each deploy to force old caches to be auto-cleaned
+ *   by the activate handler. This prevents "works in browser, fails as PWA"
+ *   issues caused by serving stale cached content.
+ *
+ * Cache strategy:
  * - Navigation (HTML): Network First → Cache Fallback
  * - Static assets: Stale-While-Revalidate (serve cached, update in bg)
  * - Firebase/API: Network Only
  */
 
-const CACHE_NAME = 'usl-admin';
+const CACHE_VERSION = 'v1';
+const CACHE_NAME = `usl-admin-${CACHE_VERSION}`;
 const BASE_PATH = '/usl-ev-landing-v2';
 const STATIC_ASSETS = [
   `${BASE_PATH}/admin/index.html`,
